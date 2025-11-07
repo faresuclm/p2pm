@@ -1,4 +1,5 @@
-FROM openjdk:8-jre
+FROM amazoncorretto:latest
+
 RUN mkdir -p /usr/local/app
 #copiar el .jar del servicio a la imagen
 COPY drop/*.jar /usr/local/app/
