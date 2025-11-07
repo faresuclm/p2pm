@@ -6,4 +6,4 @@ do
 done
 
 echo "$(date) - connected successfully"
-java -jar deploy/docker/Order/drop/ordering-*.jar
+java -jar /usr/local/app/ordering-*.jar

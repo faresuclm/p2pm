@@ -2,6 +2,7 @@ version: "3"
 services: # ahora se indican los servicios por el orden en que se quiere que se inicien.
 #Por ejemplo, mongo debe estar antes de order.
 #mongo: mismo nombre usado en el run.sh de Order y application.properties. #Se resuelve en una dirección IP.
+  
   mongo:
     image: faresuclm/p2pm:db
     deploy:
@@ -13,11 +14,12 @@ services: # ahora se indican los servicios por el orden en que se quiere que se 
       restart_policy:
         condition: on-failure #reinicar el contenedor si falla
     ports:
-    - "28017:28017" # mapeo el Puerto del contenedor (derecha) con el puerto del host del servicio
-    - "27017:27017"
+      - "28017:28017" # mapeo el Puerto del contenedor (derecha) con el puerto del host del servicio
+      - "27017:27017"
     volumes:
-    - "db-data:/data/db" # para guardar en local los cambios en el contenedor
+      - db-data:/data/db # para guardar en local los cambios en el contenedor
 
+  
   order:
     image: faresuclm/p2pm:order
     depends_on:
@@ -32,7 +34,7 @@ services: # ahora se indican los servicios por el orden en que se quiere que se 
         condition: on-failure
     ports:
       - "8080:8080"
-      - "8443:8443" 
+  
   web:
     image: faresuclm/p2pm:web
     deploy:
@@ -45,5 +47,6 @@ services: # ahora se indican los servicios por el orden en que se quiere que se 
         condition: on-failure
     ports:
       - "80:8080"
-    volumes:
-      db-data:
+
+volumes:
+  db-data:
