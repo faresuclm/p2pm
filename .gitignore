@@ -9,6 +9,9 @@
 .project
 .settings/
 
+# Containers
+./deploy/aci-multi-container.yml
+
 # Gradle
 .gradle
 **/build/**
