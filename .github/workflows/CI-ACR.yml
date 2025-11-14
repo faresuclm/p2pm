@@ -63,3 +63,16 @@ jobs:
         run: |
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/p2pm25:order
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/p2pm25:web
+
+      ### LOGIN EN AZURE CLI ###
+      - name: Azure CLI Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Instala Azure CLI Container Instance extension
+        run: az extension add --name containerinstance
+
+      - name: Desplegar en Azure Container Instances
+        run: |
+          az container create --resource-group recursosGPS --file ./deploy/aci-multi-container.yml
