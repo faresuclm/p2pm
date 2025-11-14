@@ -75,4 +75,4 @@ jobs:
 
       - name: Desplegar en Azure Container Instances
         run: |
-          az container create --resource-group recursosPM --file ./deploy/aci-multi-container.yml
+           az container create --resource-group recursosPM --file .\deploy\aci-multi-container.yml 
